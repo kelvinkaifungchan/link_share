@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  text-align:left;
+  font-size: 80px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App-logo {
@@ -35,4 +37,42 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.links a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: #ff0000;
+}
+
+.customButton {
+  cursor: pointer;
+}
+
+.modal-full {
+  min-width: 100%;
+  margin: 0;
+}
+
+.modal-full .modal-content {
+  min-height: 80vh;
+}
+
+input[type=text] {
+  font-size: 80px;
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+  border-width: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  transform: translate(0px,-2px);
+}
+
+button {
+  font-size: 80px !important;
 }
