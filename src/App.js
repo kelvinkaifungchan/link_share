@@ -19,13 +19,16 @@ export default class App extends React.Component{
   }
 
   addLink = (name, url, tags) => {
-    const obj = {name: name, url: url, tags: tags}
+    const obj = {
+      name: name,
+      url: url,
+      tags: tags
+    }
     const linkList = this.state.linkList.concat(obj)
     this.setState({
       linkList: linkList,
       shownList: linkList
     })
-
     localStorage.setItem('local', JSON.stringify(linkList))
   }
 

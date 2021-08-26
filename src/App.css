@@ -54,11 +54,12 @@
 
 .modal-full {
   min-width: 100%;
-  margin: 0;
+  margin: 0 !important;
 }
 
 .modal-full .modal-content {
-  min-height: 80vh;
+  top: -1px;
+  min-height: 100vh;
 }
 
 input[type=text] {

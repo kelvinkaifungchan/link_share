@@ -20,7 +20,7 @@ export default class LinkForm extends React.Component {
     render = () => {
         return (
         <div>
-            <input type="text" placeholder="SEARCH" onChange={this.handleSearchChange} value={this.state.search}/>
+            <input type="text" placeholder="search" onChange={this.handleSearchChange} value={this.state.search}/>
         </div>
         )
     }

@@ -8,7 +8,7 @@ export default class LinkForm extends React.Component {
             modal: false,
             name: "",
             url: "",
-            tags: "",
+            tags: [],
         }
     }
 
@@ -30,41 +30,59 @@ export default class LinkForm extends React.Component {
         })
     }
 
-    handleTagsChange = (e) => {
+    handleTagsChange = (i, e) => {
+        let tags = this.state.tags.slice();
+        tags[i] = {
+            tag: e.target.value
+        };
         this.setState({
-            tags: e.target.value
-        })
+            tags: tags
+        });
+    }
+
+    addTag = () => {
+        this.setState({
+            tags: this.state.tags.concat([{ tag: "" }]),
+          });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addLink(this.state.name, this.state.url, this.state.tags)
-        console.log("this is the tag state", this.state.tags)
         this.setState({
             modal: false,
             name: "",
             url: "",
-            tags: ""
+            tags: []
         })
     }
 
     render = () => {
         return (
         <div>
-            <span className="customButton" onClick={this.toggle}>ADD LINK</span>
-            <Modal isOpen={this.state.modal} toggle={this.toggle} className="p-5 modal-full" size="lg" >
+            <span className="customButton" onClick={this.toggle}>add link</span>
+            <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-full rounded-0" size="lg" >
                 <form onSubmit={this.handleSubmit}>
-                    <ModalBody className="p-5 modal-content">
+                    <ModalBody className="modal-content d-flex justify-content-start rounded-0">
                         <div>
-                            <input type="text" placeholder="INSERT NAME" className="p-3" onChange={this.handleNameChange} value={this.state.name}/>
+                            <input type="text" placeholder="add name" className="p-3" onChange={this.handleNameChange} value={this.state.name}/>
                         </div>
                         <div>
-                            <input type="text" placeholder="INSERT URL" className="p-3" onChange={this.handleUrlChange} value={this.state.url}/>
+                            <input type="text" placeholder="add url" className="p-3" onChange={this.handleUrlChange} value={this.state.url}/>
+                        </div>
+                        {this.state.tags.map((tag, i) => {
+                            return(
+                                <div>
+                                <input key={i} type="text" placeholder="add tag" className="p-3" onChange={this.handleTagsChange.bind(this, i)} value={tag.tag}/>
+                            </div>
+                            )
+                        })}
+                        <div>
+                        <button type="button" className="border-0 bg-transparent" onClick={this.addTag}>another tag</button>
                         </div>
                         <div>
-                            <input type="text" placeholder="ADD TAG" className="p-3" onChange={this.handleTagsChange} value={this.state.tags}/>
+                        <button type="submit" className="border-0 bg-transparent">submit</button>
                         </div>
-                        <button type="submit" className="border-0 bg-transparent">SUBMIT</button>
                     </ModalBody>
                 </form>
             </Modal>
