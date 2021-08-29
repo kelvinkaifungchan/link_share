@@ -36,7 +36,8 @@ export default class App extends React.Component{
     console.log("this is the searchvalue", searchValue)
     if(searchValue) {
       let filteredList = this.state.linkList.filter((link) => {
-        let concat = link.name.concat(link.tags)
+        let tags = link.tags.map(tag => tag.tag)
+        let concat = link.name.concat(tags)
         return concat.toLowerCase().match(searchValue.toLowerCase())
       })
       this.setState({
@@ -56,8 +57,8 @@ export default class App extends React.Component{
           <div className="row"> 
             <div className="col-3">
               <div className="sticky-top">
-              <LinkForm addLink={this.addLink}/>
-              <Search searchLink={this.searchLink}/>
+                <LinkForm addLink={this.addLink}/>
+                <Search searchLink={this.searchLink}/>
               </div>
             </div>
             <div className="col">
